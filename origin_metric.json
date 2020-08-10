@@ -1,0 +1,211 @@
+[
+    {
+        "agentType": "prometheus",
+        "data_type": "double",
+        "help": "Generic metric from SHOW GLOBAL STATUS.",
+        "key": "mysql_global_status_bytes_sent",
+        "metric_type": "counter",
+        "name": "mysql_collector_plugin_mysql_global_status_bytes_sent",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": "bytes"
+    },
+    {
+        "agentType": "prometheus",
+        "data_type": "double",
+        "help": "Generic metric from SHOW GLOBAL STATUS.",
+        "key": "mysql_global_status_qcache_free_memory",
+        "metric_type": "gauge",
+        "name": "mysql_collector_plugin_mysql_global_status_qcache_free_memory",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "data_type": "double",
+        "help": "Generic metric from SHOW GLOBAL STATUS.",
+        "key": "mysql_global_status_queries",
+        "metric_type": "counter",
+        "name": "mysql_collector_plugin_mysql_global_status_queries",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "data_type": "double",
+        "help": "Generic gauge metric from SHOW GLOBAL VARIABLES.",
+        "key": "mysql_global_variables_max_connections",
+        "metric_type": "gauge",
+        "name": "mysql_collector_plugin_mysql_global_variables_max_connections",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "data_type": "double",
+        "help": "Generic metric from SHOW GLOBAL STATUS.",
+        "key": "mysql_global_status_uptime",
+        "metric_type": "counter",
+        "name": "mysql_collector_plugin_mysql_global_status_uptime",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "data_type": "double",
+        "help": "Generic metric from SHOW GLOBAL STATUS.",
+        "key": "mysql_global_status_innodb_num_open_files",
+        "metric_type": "gauge",
+        "name": "mysql_collector_plugin_mysql_global_status_innodb_num_open_files",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "data_type": "double",
+        "help": "Generic gauge metric from SHOW GLOBAL VARIABLES.",
+        "key": "mysql_global_variables_thread_cache_size",
+        "metric_type": "gauge",
+        "name": "mysql_collector_plugin_mysql_global_variables_thread_cache_size",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "data_type": "double",
+        "help": "Generic gauge metric from SHOW GLOBAL VARIABLES.",
+        "key": "mysql_global_variables_query_cache_size",
+        "metric_type": "gauge",
+        "name": "mysql_collector_plugin_mysql_global_variables_query_cache_size",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "data_type": "double",
+        "help": "Generic metric from SHOW GLOBAL STATUS.",
+        "key": "mysql_global_status_max_used_connections",
+        "metric_type": "gauge",
+        "name": "mysql_collector_plugin_mysql_global_status_max_used_connections",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "data_type": "double",
+        "help": "Generic metric from SHOW GLOBAL STATUS.",
+        "key": "mysql_global_status_threads_created",
+        "metric_type": "gauge",
+        "name": "mysql_collector_plugin_mysql_global_status_threads_created",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "data_type": "double",
+        "help": "Generic metric from SHOW GLOBAL STATUS.",
+        "key": "mysql_global_status_threads_cached",
+        "metric_type": "gauge",
+        "name": "mysql_collector_plugin_mysql_global_status_threads_cached",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "data_type": "double",
+        "help": "Generic metric from SHOW GLOBAL STATUS.",
+        "key": "mysql_global_status_questions",
+        "metric_type": "counter",
+        "name": "mysql_collector_plugin_mysql_global_status_questions",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "data_type": "double",
+        "help": "Generic metric from SHOW GLOBAL STATUS.",
+        "key": "mysql_global_status_threads_connected",
+        "metric_type": "gauge",
+        "name": "mysql_collector_plugin_mysql_global_status_threads_connected",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "data_type": "double",
+        "help": "Generic metric from SHOW GLOBAL STATUS.",
+        "key": "mysql_global_status_opened_files",
+        "metric_type": "gauge",
+        "name": "mysql_collector_plugin_mysql_global_status_opened_files",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "data_type": "double",
+        "help": "Generic metric from SHOW GLOBAL STATUS.",
+        "key": "mysql_global_status_bytes_received",
+        "metric_type": "counter",
+        "name": "mysql_collector_plugin_mysql_global_status_bytes_received",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": "bytes"
+    },
+    {
+        "agentType": "prometheus",
+        "data_type": "double",
+        "help": "Generic gauge metric from SHOW GLOBAL VARIABLES.",
+        "key": "mysql_global_variables_innodb_buffer_pool_size",
+        "metric_type": "gauge",
+        "name": "mysql_collector_plugin_mysql_global_variables_innodb_buffer_pool_size",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "data_type": "double",
+        "help": "Generic gauge metric from SHOW GLOBAL VARIABLES.",
+        "key": "mysql_global_variables_open_files_limit",
+        "metric_type": "gauge",
+        "name": "mysql_collector_plugin_mysql_global_variables_open_files_limit",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "data_type": "double",
+        "help": "Generic metric from SHOW GLOBAL STATUS.",
+        "key": "mysql_global_status_open_files",
+        "metric_type": "gauge",
+        "name": "mysql_collector_plugin_mysql_global_status_open_files",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "data_type": "double",
+        "help": "Generic metric from SHOW GLOBAL STATUS.",
+        "key": "mysql_global_status_threads_running",
+        "metric_type": "gauge",
+        "name": "mysql_collector_plugin_mysql_global_status_threads_running",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    }
+]

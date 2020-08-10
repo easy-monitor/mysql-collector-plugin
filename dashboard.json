@@ -1,0 +1,132 @@
+[
+    {
+        "_object_id": "_DASHBOARD",
+        "instanceId": "5ab7e8b2ebc50",
+        "name": "MySQL 实例监控",
+        "namespace": "resource-monitor._MYSQL_INSTANCE",
+        "panels": [
+            {
+                "brickConf": "{\"brick\":\"general-charts.statistic-card\",\"properties\":{\"showCard\":false,\"format\":{\"unit\":\"s\"},\"icon\":{\"lib\":\"antd\",\"icon\":\"clock-circle\"}},\"lifeCycle\":{\"useResolves\":[{\"provider\":\"providers-of-data-exchange.olap-api-select\",\"args\":[{\"model\":\"easyops._MYSQL_INSTANCE\",\"statements\":[{\"name\":\"mysql_global_status_uptime\",\"alias\":\"mysql_global_status_uptime\"}],\"filters\":[{\"name\":\"instanceId\",\"operator\":\"==\",\"value\":\"${QUERY.instanceId|string}\"},{\"name\":\"time\",\"operator\":\">=\",\"value\":\"now-5m\"},{\"name\":\"mysql_global_status_uptime\",\"operator\":\"!=\",\"value\":null}],\"order\":[{\"name\":\"time\",\"order\":\"desc\"}],\"limit\":{\"limit\":1}}],\"transform\":{\"value\":\"<% _.get(DATA.list, \\\"[0].mysql_global_status_uptime\\\") %>\"},\"onReject\":{\"transform\":{\"error\":\"<% DATA.message || '接口请求错误' %>\"}}}]}}",
+                "height": 5,
+                "id": "general-charts.statistic-card",
+                "links": "[]",
+                "source": "brick",
+                "title": "运行时长",
+                "width": 8,
+                "x": 0,
+                "y": 0
+            },
+            {
+                "brickConf": "{\"brick\":\"general-charts.statistic-card\",\"properties\":{\"showCard\":false,\"icon\":{\"lib\":\"antd\",\"icon\":\"search\"}},\"lifeCycle\":{\"useResolves\":[{\"provider\":\"providers-of-data-exchange.olap-api-select\",\"args\":[{\"model\":\"easyops._MYSQL_INSTANCE\",\"statements\":[{\"name\":\"mysql_global_status_queries\",\"alias\":\"mysql_global_status_queries\"}],\"filters\":[{\"name\":\"instanceId\",\"operator\":\"==\",\"value\":\"${QUERY.instanceId|string}\"},{\"name\":\"time\",\"operator\":\">=\",\"value\":\"now-5m\"},{\"name\":\"mysql_global_status_queries\",\"operator\":\"!=\",\"value\":null}],\"order\":[{\"name\":\"time\",\"order\":\"desc\"}],\"limit\":{\"limit\":1}}],\"transform\":{\"value\":\"<% _.get(DATA.list, \\\"[0].mysql_global_status_queries\\\") %>\"},\"onReject\":{\"transform\":{\"error\":\"<% DATA.message || '接口请求错误' %>\"}}}]}}",
+                "height": 5,
+                "id": "general-charts.statistic-card",
+                "links": "[]",
+                "source": "brick",
+                "title": "查询总数",
+                "width": 8,
+                "x": 8,
+                "y": 0
+            },
+            {
+                "brickConf": "{\"brick\":\"general-charts.statistic-card\",\"properties\":{\"showCard\":false,\"format\":{\"precision\":0,\"unit\":\"bytes\"},\"icon\":{\"lib\":\"fa\",\"icon\":\"inbox\"}},\"lifeCycle\":{\"useResolves\":[{\"provider\":\"providers-of-data-exchange.olap-api-select\",\"args\":[{\"model\":\"easyops._MYSQL_INSTANCE\",\"statements\":[{\"name\":\"mysql_global_variables_innodb_buffer_pool_size\",\"alias\":\"mysql_global_variables_innodb_buffer_pool_size\"}],\"filters\":[{\"name\":\"instanceId\",\"operator\":\"==\",\"value\":\"${QUERY.instanceId|string}\"},{\"name\":\"time\",\"operator\":\">=\",\"value\":\"now-5m\"},{\"name\":\"mysql_global_variables_innodb_buffer_pool_size\",\"operator\":\"!=\",\"value\":null}],\"order\":[{\"name\":\"time\",\"order\":\"desc\"}],\"limit\":{\"limit\":1}}],\"transform\":{\"value\":\"<% _.get(DATA.list, \\\"[0].mysql_global_variables_innodb_buffer_pool_size\\\") %>\"}}]}}",
+                "height": 5,
+                "id": "general-charts.statistic-card",
+                "links": "[]",
+                "source": "brick",
+                "title": "InnoDB 缓冲池大小",
+                "width": 8,
+                "x": 16,
+                "y": 0
+            },
+            {
+                "brickConf": "{\"brick\":\"chart-v2.time-series-chart\",\"properties\":{\"height\":230,\"xField\":\"time\",\"yFields\":[\"mysql_global_variables_max_connections\",\"mysql_global_status_max_used_connections\"],\"axis\":{\"yAxis\":{\"min\":0}}},\"lifeCycle\":{\"useResolves\":[{\"provider\":\"providers-of-data-exchange.olap-api-query\",\"args\":[{\"model\":\"easyops._MYSQL_INSTANCE\",\"dims\":[\"time(1m)\"],\"measures\":[{\"name\":\"mysql_global_variables_max_connections\",\"function\":{\"expression\":\"avg\",\"args\":[\"mysql_global_variables_max_connections\"]}},{\"name\":\"mysql_global_status_max_used_connections\",\"function\":{\"expression\":\"avg\",\"args\":[\"mysql_global_status_max_used_connections\"]}}],\"filters\":[{\"name\":\"instanceId\",\"operator\":\"==\",\"value\":\"${QUERY.instanceId|string}\"},{\"name\":\"time\",\"operator\":\">=\",\"value\":\"${QUERY.from=\\\"now-1h\\\"|string}\"},{\"name\":\"time\",\"operator\":\"<=\",\"value\":\"<% parseInt(+moment() / 1000) %>\"}],\"order\":[{\"name\":\"time\",\"order\":\"desc\"}]}],\"transform\":{\"data\":\"@{list}\"},\"onReject\":{\"transform\":{\"error\":\"<% DATA.message || '接口请求错误' %>\"}}}]}}",
+                "height": 8,
+                "id": "general-charts.statistic-card",
+                "links": "[]",
+                "source": "brick",
+                "title": "连接数",
+                "width": 12,
+                "x": 0,
+                "y": 5
+            },
+            {
+                "brickConf": "{\"brick\":\"chart-v2.time-series-chart\",\"properties\":{\"height\":230,\"xField\":\"time\",\"yFields\":[\"mysql_global_status_questions\"],\"axis\":{\"yAxis\":{\"min\":0}}},\"lifeCycle\":{\"useResolves\":[{\"provider\":\"providers-of-data-exchange.olap-api-query\",\"args\":[{\"model\":\"easyops._MYSQL_INSTANCE\",\"dims\":[\"time(1m)\"],\"measures\":[{\"name\":\"mysql_global_status_questions\",\"function\":{\"expression\":\"avg\",\"args\":[\"mysql_global_status_questions\"]}}],\"filters\":[{\"name\":\"instanceId\",\"operator\":\"==\",\"value\":\"${QUERY.instanceId|string}\"},{\"name\":\"time\",\"operator\":\">=\",\"value\":\"${QUERY.from=\\\"now-1h\\\"|string}\"},{\"name\":\"time\",\"operator\":\"<=\",\"value\":\"<% parseInt(+moment() / 1000) %>\"}],\"order\":[{\"name\":\"time\",\"order\":\"desc\"}]}],\"transform\":{\"data\":\"@{list}\"},\"onReject\":{\"transform\":{\"error\":\"<% DATA.message || '接口请求错误' %>\"}}}]}}",
+                "height": 8,
+                "id": "general-charts.statistic-card",
+                "links": "[]",
+                "source": "brick",
+                "title": "请求数",
+                "width": 12,
+                "x": 12,
+                "y": 5
+            },
+            {
+                "brickConf": "{\"brick\":\"chart-v2.time-series-chart\",\"properties\":{\"height\":230,\"xField\":\"time\",\"yFields\":[\"mysql_global_status_threads_connected\",\"mysql_global_status_threads_running\"],\"axis\":{\"yAxis\":{\"min\":0}}},\"lifeCycle\":{\"useResolves\":[{\"provider\":\"providers-of-data-exchange.olap-api-query\",\"args\":[{\"model\":\"easyops._MYSQL_INSTANCE\",\"dims\":[\"time(1m)\"],\"measures\":[{\"name\":\"mysql_global_status_threads_connected\",\"function\":{\"expression\":\"avg\",\"args\":[\"mysql_global_status_threads_connected\"]}},{\"name\":\"mysql_global_status_threads_running\",\"function\":{\"expression\":\"avg\",\"args\":[\"mysql_global_status_threads_running\"]}}],\"filters\":[{\"name\":\"instanceId\",\"operator\":\"==\",\"value\":\"${QUERY.instanceId|string}\"},{\"name\":\"time\",\"operator\":\">=\",\"value\":\"${QUERY.from=\\\"now-1h\\\"|string}\"},{\"name\":\"time\",\"operator\":\"<=\",\"value\":\"<% parseInt(+moment() / 1000) %>\"}],\"order\":[{\"name\":\"time\",\"order\":\"desc\"}]}],\"transform\":{\"data\":\"@{list}\"},\"onReject\":{\"transform\":{\"error\":\"<% DATA.message || '接口请求错误' %>\"}}}]}}",
+                "height": 8,
+                "id": "general-charts.statistic-card",
+                "links": "[]",
+                "source": "brick",
+                "title": "线程数",
+                "width": 12,
+                "x": 0,
+                "y": 13
+            },
+            {
+                "brickConf": "{\"brick\":\"chart-v2.time-series-chart\",\"properties\":{\"height\":230,\"xField\":\"time\",\"yFields\":[\"mysql_global_variables_thread_cache_size\",\"mysql_global_status_threads_created\",\"mysql_global_status_threads_cached\"],\"axis\":{\"yAxis\":{\"min\":0}}},\"lifeCycle\":{\"useResolves\":[{\"provider\":\"providers-of-data-exchange.olap-api-query\",\"args\":[{\"model\":\"easyops._MYSQL_INSTANCE\",\"dims\":[\"time(1m)\"],\"measures\":[{\"name\":\"mysql_global_status_threads_created\",\"function\":{\"expression\":\"avg\",\"args\":[\"mysql_global_status_threads_created\"]}},{\"name\":\"mysql_global_variables_thread_cache_size\",\"function\":{\"expression\":\"avg\",\"args\":[\"mysql_global_variables_thread_cache_size\"]}},{\"name\":\"mysql_global_status_threads_cached\",\"function\":{\"expression\":\"avg\",\"args\":[\"mysql_global_status_threads_cached\"]}}],\"filters\":[{\"name\":\"instanceId\",\"operator\":\"==\",\"value\":\"${QUERY.instanceId|string}\"},{\"name\":\"time\",\"operator\":\">=\",\"value\":\"${QUERY.from=\\\"now-1h\\\"|string}\"},{\"name\":\"time\",\"operator\":\"<=\",\"value\":\"<% parseInt(+moment() / 1000) %>\"}],\"order\":[{\"name\":\"time\",\"order\":\"desc\"}]}],\"transform\":{\"data\":\"@{list}\"},\"onReject\":{\"transform\":{\"error\":\"<% DATA.message || '接口请求错误' %>\"}}}]}}",
+                "height": 8,
+                "id": "general-charts.statistic-card",
+                "links": "[]",
+                "source": "brick",
+                "title": "线程缓存",
+                "width": 12,
+                "x": 12,
+                "y": 13
+            },
+            {
+                "brickConf": "{\"brick\":\"chart-v2.time-series-chart\",\"properties\":{\"height\":230,\"xField\":\"time\",\"yFields\":[\"mysql_global_status_bytes_sent\",\"mysql_global_status_bytes_received\"],\"axis\":{\"yAxis\":{\"min\":0,\"unit\":\"bytes\"}}},\"lifeCycle\":{\"useResolves\":[{\"provider\":\"providers-of-data-exchange.olap-api-query\",\"args\":[{\"model\":\"easyops._MYSQL_INSTANCE\",\"dims\":[\"time(1m)\"],\"measures\":[{\"name\":\"mysql_global_status_bytes_sent\",\"function\":{\"expression\":\"avg\",\"args\":[\"mysql_global_status_bytes_sent\"]}},{\"name\":\"mysql_global_status_bytes_received\",\"function\":{\"expression\":\"avg\",\"args\":[\"mysql_global_status_bytes_received\"]}}],\"filters\":[{\"name\":\"instanceId\",\"operator\":\"==\",\"value\":\"${QUERY.instanceId|string}\"},{\"name\":\"time\",\"operator\":\">=\",\"value\":\"${QUERY.from=\\\"now-1h\\\"|string}\"},{\"name\":\"time\",\"operator\":\"<=\",\"value\":\"<% parseInt(+moment() / 1000) %>\"}],\"order\":[{\"name\":\"time\",\"order\":\"desc\"}]}],\"transform\":{\"data\":\"@{list}\"},\"onReject\":{\"transform\":{\"error\":\"<% DATA.message || '接口请求错误' %>\"}}}]}}",
+                "height": 8,
+                "id": "general-charts.statistic-card",
+                "links": "[]",
+                "source": "brick",
+                "title": "网络流量",
+                "width": 12,
+                "x": 12,
+                "y": 21
+            },
+            {
+                "brickConf": "{\"brick\":\"chart-v2.time-series-chart\",\"properties\":{\"height\":230,\"yFields\":[\"mysql_global_variables_query_cache_size\",\"mysql_global_status_qcache_free_memory\"],\"xField\":\"time\",\"axis\":{\"yAxis\":{\"min\":0,\"unit\":\"bytes\"}}},\"lifeCycle\":{\"useResolves\":[{\"provider\":\"providers-of-data-exchange.olap-api-query\",\"args\":[{\"model\":\"easyops._MYSQL_INSTANCE\",\"dims\":[\"time(1m)\"],\"measures\":[{\"name\":\"mysql_global_variables_query_cache_size\",\"function\":{\"expression\":\"avg\",\"args\":[\"mysql_global_variables_query_cache_size\"]}},{\"name\":\"mysql_global_status_qcache_free_memory\",\"function\":{\"expression\":\"avg\",\"args\":[\"mysql_global_status_qcache_free_memory\"]}}],\"filters\":[{\"name\":\"instanceId\",\"operator\":\"==\",\"value\":\"${QUERY.instanceId|string}\"},{\"name\":\"time\",\"operator\":\">=\",\"value\":\"${QUERY.from=\\\"now-1h\\\"|string}\"},{\"name\":\"time\",\"operator\":\"<=\",\"value\":\"<% parseInt(+moment() / 1000) %>\"}],\"order\":[{\"name\":\"time\",\"order\":\"desc\"}]}],\"transform\":{\"data\":\"@{list}\"},\"onReject\":{\"transform\":{\"error\":\"<% DATA.message || '接口请求错误' %>\"}}}]}}",
+                "height": 8,
+                "id": "general-charts.statistic-card",
+                "links": "[]",
+                "source": "brick",
+                "title": "内存占用",
+                "width": 12,
+                "x": 0,
+                "y": 21
+            },
+            {
+                "brickConf": "{\"brick\":\"chart-v2.time-series-chart\",\"properties\":{\"height\":230,\"xField\":\"time\",\"yFields\":[\"mysql_global_variables_open_files_limit\",\"mysql_global_status_open_files\",\"mysql_global_status_innodb_num_open_files\"],\"axis\":{\"yAxis\":{\"min\":0}}},\"lifeCycle\":{\"useResolves\":[{\"provider\":\"providers-of-data-exchange.olap-api-query\",\"args\":[{\"model\":\"easyops._MYSQL_INSTANCE\",\"dims\":[\"time(1m)\"],\"measures\":[{\"name\":\"mysql_global_variables_open_files_limit\",\"function\":{\"expression\":\"avg\",\"args\":[\"mysql_global_variables_open_files_limit\"]}},{\"name\":\"mysql_global_status_open_files\",\"function\":{\"expression\":\"avg\",\"args\":[\"mysql_global_status_open_files\"]}},{\"name\":\"mysql_global_status_innodb_num_open_files\",\"function\":{\"expression\":\"avg\",\"args\":[\"mysql_global_status_innodb_num_open_files\"]}}],\"filters\":[{\"name\":\"instanceId\",\"operator\":\"==\",\"value\":\"${QUERY.instanceId|string}\"},{\"name\":\"time\",\"operator\":\">=\",\"value\":\"${QUERY.from=\\\"now-1h\\\"|string}\"},{\"name\":\"time\",\"operator\":\"<=\",\"value\":\"<% parseInt(+moment() / 1000) %>\"}],\"order\":[{\"name\":\"time\",\"order\":\"desc\"}]}],\"transform\":{\"data\":\"@{list}\"},\"onReject\":{\"transform\":{\"error\":\"<% DATA.message || '接口请求错误' %>\"}}}]}}",
+                "height": 8,
+                "id": "general-charts.statistic-card",
+                "links": "[]",
+                "source": "brick",
+                "title": "打开文件数",
+                "width": 24,
+                "x": 0,
+                "y": 29
+            }
+        ],
+        "variables": [
+            {
+                "id": "instanceId",
+                "multiSelect": false,
+                "name": "实例 ID",
+                "selectorDefaultValue": "5ab681bc6d96a",
+                "selectorObjectId": "_MYSQL_INSTANCE",
+                "selectorQuery": "{}",
+                "showSelector": false,
+                "type": "cmdb"
+            }
+        ]
+    }
+]
