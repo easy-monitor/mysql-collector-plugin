@@ -11,6 +11,18 @@
         "unit": "bytes"
     },
     {
+        "agentType": "calculated",
+        "data_type": "double",
+        "help": "Generic metric from SHOW GLOBAL STATUS.",
+        "key": "mysql_global_status_bytes_sent_rate",
+        "metric_type": "gauge",
+        "name": "mysql_collector_plugin_mysql_global_status_bytes_sent_rate",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": "bytes/min",
+        "expression": "rate(mysql_global_status_bytes_sent[5m])"
+    },
+    {
         "agentType": "prometheus",
         "data_type": "double",
         "help": "Generic metric from SHOW GLOBAL STATUS.",
@@ -31,6 +43,18 @@
         "paramDefine": [],
         "tagDefine": [],
         "unit": ""
+    },
+    {
+        "agentType": "calculated",
+        "data_type": "double",
+        "help": "Generic metric from SHOW GLOBAL STATUS.",
+        "key": "mysql_global_status_queries_rate",
+        "metric_type": "gauge",
+        "name": "mysql_collector_plugin_mysql_global_status_queries_rate",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": "",
+        "expression": "rate(mysql_global_status_queries[5m])"
     },
     {
         "agentType": "prometheus",
@@ -110,6 +134,18 @@
         "unit": ""
     },
     {
+        "agentType": "calculated",
+        "data_type": "double",
+        "help": "Generic metric from SHOW GLOBAL STATUS.",
+        "key": "mysql_global_status_threads_created_rate",
+        "metric_type": "gauge",
+        "name": "mysql_collector_plugin_mysql_global_status_threads_created_rate",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": "",
+        "expression": "rate(mysql_global_status_threads_created[5m])"
+    },
+    {
         "agentType": "prometheus",
         "data_type": "double",
         "help": "Generic metric from SHOW GLOBAL STATUS.",
@@ -132,6 +168,18 @@
         "unit": ""
     },
     {
+        "agentType": "calculated",
+        "data_type": "double",
+        "help": "Generic metric from SHOW GLOBAL STATUS.",
+        "key": "mysql_global_status_questions_rate",
+        "metric_type": "gauge",
+        "name": "mysql_collector_plugin_mysql_global_status_questions_rate",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": "",
+        "expression": "rate(mysql_global_status_questions[5m])"
+    },
+    {
         "agentType": "prometheus",
         "data_type": "double",
         "help": "Generic metric from SHOW GLOBAL STATUS.",
@@ -141,6 +189,18 @@
         "paramDefine": [],
         "tagDefine": [],
         "unit": ""
+    },
+    {
+        "agentType": "calculated",
+        "data_type": "double",
+        "help": "Generic metric from SHOW GLOBAL STATUS.",
+        "key": "mysql_global_status_threads_connected_max",
+        "metric_type": "gauge",
+        "name": "mysql_collector_plugin_mysql_global_status_threads_connected_max",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": "",
+        "expression": "max_over_time(mysql_global_status_threads_connected[5m])"
     },
     {
         "agentType": "prometheus",
@@ -154,6 +214,18 @@
         "unit": ""
     },
     {
+        "agentType": "calculated",
+        "data_type": "double",
+        "help": "Generic metric from SHOW GLOBAL STATUS.",
+        "key": "mysql_global_status_opened_files_rate",
+        "metric_type": "gauge",
+        "name": "mysql_collector_plugin_mysql_global_status_opened_files_rate",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": "",
+        "expression": "rate(mysql_global_status_opened_files[5m])"
+    },
+    {
         "agentType": "prometheus",
         "data_type": "double",
         "help": "Generic metric from SHOW GLOBAL STATUS.",
@@ -163,6 +235,18 @@
         "paramDefine": [],
         "tagDefine": [],
         "unit": "bytes"
+    },
+    {
+        "agentType": "calculated",
+        "data_type": "double",
+        "help": "Generic metric from SHOW GLOBAL STATUS.",
+        "key": "mysql_global_status_bytes_received_rate",
+        "metric_type": "gauge",
+        "name": "mysql_collector_plugin_mysql_global_status_bytes_received_rate",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": "bytes/min",
+        "expression": "rate(mysql_global_status_bytes_received[5m])"
     },
     {
         "agentType": "prometheus",
@@ -207,5 +291,29 @@
         "paramDefine": [],
         "tagDefine": [],
         "unit": ""
+    },
+    {
+        "agentType": "calculated",
+        "data_type": "double",
+        "help": "Generic metric from SHOW GLOBAL STATUS.",
+        "key": "mysql_global_status_threads_running_max",
+        "metric_type": "gauge",
+        "name": "mysql_collector_plugin_mysql_global_status_threads_running_max",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": "",
+        "expression": "max_over_time(mysql_global_status_threads_running[5m])"
+    },
+    {
+        "agentType": "calculated",
+        "data_type": "double",
+        "help": "Generic metric from SHOW GLOBAL STATUS.",
+        "key": "mysql_global_status_threads_running_avg",
+        "metric_type": "gauge",
+        "name": "mysql_collector_plugin_mysql_global_status_threads_running_avg",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": "",
+        "expression": "avg_over_time(mysql_global_status_threads_running[5m])"
     }
 ]
