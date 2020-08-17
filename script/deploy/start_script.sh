@@ -133,6 +133,13 @@ do
     esac
 done
 
+if [ -f exporter.pid ]; then
+    echo "The MySQL exporter has already started."
+    exit 0
+fi
+
 chmod +x ./src/mysqld_exporter
 
-DATA_SOURCE_NAME="$mysql_user:$mysql_password@($mysql_host:$mysql_port)/" ./src/mysqld_exporter --web.listen-address=$exporter_host:$exporter_port --web.telemetry-path=$exporter_uri
+DATA_SOURCE_NAME="$mysql_user:$mysql_password@($mysql_host:$mysql_port)/" ./src/mysqld_exporter --web.listen-address=$exporter_host:$exporter_port --web.telemetry-path=$exporter_uri &
+
+echo $! > exporter.pid
