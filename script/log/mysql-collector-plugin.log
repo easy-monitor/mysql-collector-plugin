@@ -1,0 +1,2 @@
+2020-11-12 16:27:41 [INFO] Message: start exporter
+bash: ./src/mysqld_exporter: cannot execute binary file: Exec format error

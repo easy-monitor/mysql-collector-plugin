@@ -1,0 +1,11 @@
+# exporter进程的keyword，支持"java|xxx|xx"的正则，程序会根据egrep的方式去过滤
+exporter_keyword: "mysql_exporter"
+
+# exporter启动的端口范围
+port_range: [20000, 60000]
+
+# exporter的启动脚本模板，{xx}的变量将被替换
+start_cmd_template: "bash ./bin/start.sh --mysql-host {ip} --mysql-port {port} --mysql-user easyops --mysql-password easyops --exporter-port {exporter_port}"
+
+query:
+  inMonitor: true
