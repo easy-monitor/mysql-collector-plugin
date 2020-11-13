@@ -153,6 +153,5 @@ echo "$(date "+%Y-%m-%d %H:%M:%S") [INFO] Message: $message" >> $LOG_FILE
 cd $PACKAGE_PATH
 chmod +x src/mysqld_exporter
 DATA_SOURCE_NAME="$mysql_user:$mysql_password@($mysql_host:$mysql_port)/" ./src/mysqld_exporter --collect.binlog_size --web.listen-address=$exporter_host:$exporter_port --web.telemetry-path=$exporter_uri >/dev/null 2>$LOG_FILE &
-# 获得执行的pid
+# 鑾峰緱鎵ц鐨刾id
 echo $!
-
