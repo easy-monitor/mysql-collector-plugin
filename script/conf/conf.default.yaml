@@ -8,4 +8,4 @@ port_range: [20000, 60000]
 start_cmd_template: "bash ./bin/start.sh --mysql-host {ip} --mysql-port {port} --mysql-user easyops --mysql-password easyops --exporter-port {exporter_port}"
 
 query:
-  inMonitor: true
+  isMonitor: true
