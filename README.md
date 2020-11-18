@@ -9,8 +9,6 @@ EasyOps MySQL 监控插件包是适用于 EasyOps 新版监控平台，专门提
 - [工作原理](#工作原理)
 - [准备工作](#准备工作)
 - [使用方法](#使用方法)
-- [启动参数](#启动参数) 
-- [项目内容](#项目内容)
 - [维护者](#维护者)
 - [许可证](#许可证)
 
@@ -41,8 +39,8 @@ MySQL >= 5.1
 2. 确认用来连接 MySQL 的用户和密码。该用户至少需要具备 `PROCESS`（用于查看所有用户线程和连接状态）、`REPLICATION CLIENT`（用于查看主从同步状态）、对所有库表的 `SELECT`（用于查看表状态）的权限，可通过以下命令创建仅具有所需权限的用户。
 
 ```
-CREATE USER 'exporter'@'127.0.0.1' IDENTIFIED BY '123456';
-GRANT PROCESS, REPLICATION CLIENT, SELECT ON *.* TO 'exporter'@'127.0.0.1';
+CREATE USER 'exporter'@'%' IDENTIFIED BY '123456';
+GRANT PROCESS, REPLICATION CLIENT, SELECT ON *.* TO 'exporter'@'%';
 flush privileges;
 ```
 
