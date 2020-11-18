@@ -52,102 +52,33 @@ flush privileges;
 
 1. 进入[Releases页面](https://github.com/easy-monitor/mysql-collector-plugin/releases)下载该项目的最新版本
 
-2. 建议解压到 EasyOps 平台服务器上的 `/data/easyops/monitor_plugin_packages` 目录下。
+2. 建议解压到 EasyOps 平台服务器上的 `/data/exporter` 目录下。
 
 3. 使用 EasyOps 平台提供的自动化工具一键导入该插件包，具体命令如下，请替换其中的 `8888` 为当前 EasyOps 平台具体的 `org`。
 
 ```sh
 $ cd /usr/local/easyops/collector_plugin_service/tools
-$ sh plugin_op.sh install 8888 /data/easyops/monitor_plugin_packages/mysql-collector-plugin
+$ sh plugin_op.sh install 8888 /data/exporter/mysql-collector-plugin
 ```
 
 4. 导入成功后访问 EasyOps 平台的「采集插件」列表页面 ( http://your-easyops-server/next/collector-plugin )，就能看到导入的 "mysql_collector_plugin" 采集插件。
 
-### 启动 MySQL Exporter
+### 启动插件包
 
-1. 可通过监控插件包提供的启动脚本启动 MySQL Exporter，具体命令如下，请替换其中的 `--mysql-host`、`--mysql-port` 参数为采集的 MySQL 的监听地址和端口，`--mysql-user`、`--mysql-password` 参数为用来连接 MySQL 的用户和密码。
+1. 根据现场的情况修改`supervisor/exporter-supervisor.py`的`ORG`和`CMDB_HOST`配置
 
-```sh
-$ cd /data/easyops/monitor_plugin_packages/mysql-collector-plugin/script
-$ sh start_script.sh --mysql-host 127.0.0.1 --mysql-port 3306 --mysql-user exporter --mysql-password 123456
-```
+2. 启动插件包
+有两种方案：
 
-2. 通过访问 http://127.0.0.1:9104/metrics 来获取指标数据，请替换其中的 `127.0.0.1:9104` 为 Exporter 具体的监听地址和端口。
+    a. 手动执行：
+    ```shell
+    cd script
+    sh deploy/start_script.sh
+    ```
 
-```sh
-$ curl http://127.0.0.1:9104/metrics 
-```
+    b. 通过优维的部署平台执行：
+    在上述导入那个步，其实就已经将插件包上传到平台的制品包，你可以在程序包管理看到该制品包，程序包的包名为：`collector_plugin-xxx`，按标准的主机部署的方式执行即可，这边不再详细描述。
 
-3. 接下来可使用导入的采集插件创建采集任务来对接启动的 Exporter。
-
-## 启动参数
-
-| 名称 | 类型 | 必填 | 默认值 | 说明 |
-| --- | --- | --- | --- | --- |
-| mysql-host | string | false | 127.0.0.1 | MySQL 监听地址 |
-| mysql-port | int | false | 3306 | MySQL 监听端口 |
-| mysql-user | string | false |  | MySQL 认证用户 |
-| mysql-password | string | false |  | MySQL 认证密码 |
-| exporter-host | string | false | 127.0.0.1 | Exporter 监听地址 |
-| exporter-port | int | false | 9104 | Exporter 监听端口 |
-| exporter-uri | string | false | /metrics | Exporter 获取指标数据的 URI |
-
-## 项目内容
-
-### 目录结构
-
-```
-mysql-collector-plugin
-├── dashboard.json
-├── origin_metric.json
-└── script
-    ├── deploy
-    │   └── start_script.sh
-    ├── log
-    │   └── mysql-collector-plugin.log
-    ├── package.conf.yaml
-    ├── plugin.yaml
-    └── src
-        └── mysqld_exporter
-```
-
-该项目的目录结构遵循标准的 EasyOps 监控插件包规范，具体内容如下：
-
-- dashboard.json: 仪表盘的定义文件
-- origin_metric.json: 采集插件关联的监控指标定义文件
-- script: 采集插件关联的程序包目录，执行采集任务时会部署到指定的目标机器上
-- script/deploy/start_script.sh: 启动脚本
-- script/log: 日志文件目录
-- script/package.conf.yaml: 采集插件关联的程序包的定义文件
-- script/plugin.yaml: 采集插件包的定义文件
-- script/src: 采集插件包的 Exporter 目录
-
-### plugin.yaml
-
-```yaml
-# 支持 easyops/prometheus/zabbix-agent 三种采集类型
-# 1. easyops: 表示使用 EasyOps Agent 进行指标采集
-# 2. prometheus: 表示对接 Prometheus Exporter 进行指标采集
-# 3. zabbix-agent: 表示对接 Zabbix Agent 进行指标采集
-agentType: prometheus
-
-# 采集插件的名称，也是采集插件关联的程序包名称
-name: mysql_collector_plugin
-# 采集插件关联的程序包版本名称
-version: 1.0.0
-
-# 采集插件类别 
-category: 数据库
-# 采集插件参数列表
-params:
-  - mysql_host
-  - mysql_port
-  - mysql_user
-  - mysql_password
-  - exporter_host
-  - exporter_port
-  - exporter_uri
-```
 
 ## 维护者
 
