@@ -50,7 +50,7 @@ flush privileges;
 
 ### 导入监控插件包
 
-1. 下载该项目的压缩包 ( https://github.com/easy-monitor/mysql-collector-plugin/archive/master.zip )。
+1. 进入[Releases页面](https://github.com/easy-monitor/mysql-collector-plugin/releases)下载该项目的最新版本
 
 2. 建议解压到 EasyOps 平台服务器上的 `/data/easyops/monitor_plugin_packages` 目录下。
 
