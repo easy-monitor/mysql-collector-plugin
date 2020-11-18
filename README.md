@@ -63,11 +63,33 @@ $ sh plugin_op.sh install 8888 /data/exporter/mysql-collector-plugin
 
 4. 导入成功后访问 EasyOps 平台的「采集插件」列表页面 ( http://your-easyops-server/next/collector-plugin )，就能看到导入的 "mysql_collector_plugin" 采集插件。
 
+### 建立资源模型
+* 如果使用我们标准的模型，可以在模型管理里面导入如下文件[MYSQL_SERVICE_NODE.json](./MYSQL_SERVICE_NODE.json)
+* 如果使用现场自定义的模型，则修改该模型：
+  * 手动添加一个exporter结构体，具备如下字段
+
+    | 字段名 | 类型 | 描述 |
+    | - | - | - |
+    | protocol | enum | http或https |
+    | host | string | exporter所在机器IP |
+    | port | number | exporter监听端口 |
+    | uri | string | exporter的metrics uri，一般为/metrics |
+    | pid | number | exporter启动pid |
+    | startCommand | string | 采集插件包的启动命令 |
+
+  * 新加入isMonitor字段，bool型
+    用来做是否监控的开关，默认在插件包的`conf.default.yaml`都会有cmdb_query去过滤isMonitor=true的实例
+
 ### 启动插件包
 
 1. 根据现场的情况修改`supervisor/exporter-supervisor.py`的`ORG`和`CMDB_HOST`配置
 
-2. 启动插件包
+2. 如果现场用的不是内置的`MYSQL_SERVICE_NODE`模型，则修改如下文件：deploy/start_script.sh
+```shell
+./supervisor/exporter-supervisor.py YOUR-OBJECT-ID
+```
+
+3. 启动插件包
 有两种方案：
 
     a. 手动执行：
