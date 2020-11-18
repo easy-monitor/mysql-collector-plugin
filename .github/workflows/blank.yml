@@ -1,0 +1,63 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on: 
+  push:
+    # Sequence of patterns matched against refs/tags
+    tags:
+      - '*' # Push events to matching v*, i.e. v1.0, v20.15.10
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      - name: Checkout submodules using a PAT
+        run: |
+          git config --file .gitmodules --get-regexp url | while read url; do
+            git config --file=.gitmodules $(echo "$url" | sed -E "s/git@github.com:|https:\/\/github.com\//https:\/\/${{ secrets.CI_PAT }}:${{ secrets.CI_PAT }}@github.com\//")
+          done
+          git submodule sync
+          git submodule update --init --recursive
+      # - name: Archive production artifacts
+      #  uses: actions/upload-artifact@v2
+      #  with:
+      #    name: mysql-collector-plugin
+      #    path: "*"
+      - name: archive
+        run: |
+          cd ..
+          ls
+          tar --exclude='./mysql-collector-plugin/.git' --exclude='./mysql-collector-plugin/.github' --exclude='./mysql-collector-plugin/.gitmodules' -zcvf mysql-collector-plugin.tar.gz mysql-collector-plugin
+          echo "the end"
+          ls
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+      - name: Upload Release Asset
+        id: upload-release-asset 
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+          asset_path: ../mysql-collector-plugin.tar.gz
+          asset_name: mysql-collector-plugin.tar.gz
+          asset_content_type: application/tar+gzip
